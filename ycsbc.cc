@@ -68,6 +68,7 @@ int main(const int argc, const char *argv[]) {
     assert(n.valid());
     sum += n.get();
   }
+  cout << "=%=%=%= LOADED =%=%=%=" << endl;
   cerr << "# Loading records:\t" << sum << endl;
 
   // Peforms transactions
