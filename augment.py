@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import sys
 import re
+import random
+random.seed()
 key_re = re.compile(r'[a-zA-Z]*([0-9]*)')
 def handle_update_match(match, f):
     key = match.group(1)
@@ -12,7 +14,11 @@ def handle_update_match(match, f):
         print(key)
         sys.exit(1)
     userid = int(kmatch.group(1))
-    partition = userid % hosts
+    c = random.randrange(100)
+    if c <= 10:
+        partition = random.choice([x for x in range(0, hosts) if x != userid % hosts])
+    else:
+        partition = userid % hosts
     print('%d UPDATE %s-%s %s'%(partition, key, subkey, value), file=f)
 def handle_get_match(match, f):
     key = match.group(1)
@@ -23,7 +29,11 @@ def handle_get_match(match, f):
         print(key)
         sys.exit(1)
     userid = int(kmatch.group(1))
-    partition = userid % hosts
+    c = random.randrange(100)
+    if c <= 10:
+        partition = random.choice([x for x in range(0, hosts) if x != userid % hosts])
+    else:
+        partition = userid % hosts
     print('%d GET %s-%s'%(partition, key, subkey), file=f)
 
 def main(args):

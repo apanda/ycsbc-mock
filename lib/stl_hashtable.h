@@ -41,7 +41,7 @@ class StlHashtable : public StringHashtable<V> {
     bool operator()(const String &a, const String &b) const { return a == b; }
   };
 
-  typedef std::unordered_map<String, V, Hash, Equal, PA> Hashtable;
+  typedef std::unordered_map<String, V, Hash, Equal> Hashtable;
   Hashtable table_;
 };
 
