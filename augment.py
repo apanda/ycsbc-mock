@@ -14,11 +14,11 @@ def handle_update_match(match, f):
         print(key)
         sys.exit(1)
     userid = int(kmatch.group(1))
-    c = random.randrange(100)
-    if c <= 10:
-        partition = random.choice([x for x in range(0, hosts) if x != userid % hosts])
-    else:
-        partition = userid % hosts
+    # c = random.randrange(100)
+    # if c <= 10:
+    partition = random.choice([x for x in range(0, hosts) if x != userid % hosts])
+    # else:
+        # partition = userid % hosts
     print('%d UPDATE %s-%s %s'%(partition, key, subkey, value), file=f)
 def handle_get_match(match, f):
     key = match.group(1)
@@ -30,10 +30,10 @@ def handle_get_match(match, f):
         sys.exit(1)
     userid = int(kmatch.group(1))
     c = random.randrange(100)
-    if c <= 10:
-        partition = random.choice([x for x in range(0, hosts) if x != userid % hosts])
-    else:
-        partition = userid % hosts
+    # if c <= 10:
+    partition = random.choice([x for x in range(0, hosts) if x != userid % hosts])
+    # else:
+        # partition = userid % hosts
     print('%d GET %s-%s'%(partition, key, subkey), file=f)
 
 def main(args):
