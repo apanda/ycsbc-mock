@@ -203,7 +203,10 @@ inline std::string CoreWorkload::BuildKeyName(uint64_t key_num) {
   if (!ordered_inserts_) {
     key_num = utils::Hash(key_num);
   }
-  return std::string("user").append(std::to_string(key_num));
+
+  /* akshay: reverse key format to put the entropy in the front */
+  return std::to_string(key_num).append(std::string("blah"));
+  //return std::string("user").append(std::to_string(key_num));
 }
 
 inline std::string CoreWorkload::NextFieldName() {
